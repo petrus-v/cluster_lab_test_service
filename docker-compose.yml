@@ -1,0 +1,31 @@
+version: '2.1'
+
+services:
+
+  anyblok:
+    build: ./
+    volumes:
+      - anyblok_data:/var/test_service
+      # Simulate a directory that is not a btrfs partition
+      - cache_data:/var/cache
+
+  dbserver:
+    image: postgres:10-alpine
+    environment:
+      POSTGRES_DB: lab_db
+      POSTGRES_USER: lab_user
+      POSTGRES_PASSWORD: lab_password
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+
+volumes:
+  dbdata:
+    driver: btrfs
+  anyblok_data:
+    driver: btrfs
+  cache_data:
+
+
+networks:
+  cluster_default:
+    external: true

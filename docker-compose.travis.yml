@@ -1,0 +1,20 @@
+version: '2.1'
+
+services:
+
+  anyblok:
+    ports:
+      - "8080:8080"
+    volumes:
+      - anyblok_data:/var/test_service
+      # Simulate a directory that is not a btrfs partition
+      - cache_data:/var/cache
+    command: ["test"]
+
+volumes:
+  dbdata:
+  anyblok_data:
+  cache_data:
+
+networks:
+  cluster_default:
