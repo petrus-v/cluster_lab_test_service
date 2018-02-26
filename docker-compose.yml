@@ -4,6 +4,11 @@ services:
 
   anyblok:
     build: ./
+    environment:
+      CADDYFILE: |
+        http://service.cluster.lab {
+            proxy / https://$CONTAINER:8080
+        }
     volumes:
       - anyblok_data:/var/test_service
       # Simulate a directory that is not a btrfs partition
