@@ -14,6 +14,7 @@ services:
       # Simulate a directory that is not a btrfs partition
       - cache_data:/var/cache
     networks:
+      - backend
       - cluster_default
 
   dbserver:
@@ -24,6 +25,8 @@ services:
       POSTGRES_PASSWORD: lab_password
     volumes:
       - dbdata:/var/lib/postgresql/data
+    networks:
+      - backend
 
 volumes:
   dbdata:
@@ -36,3 +39,4 @@ volumes:
 networks:
   cluster_default:
     external: true
+  backend:
