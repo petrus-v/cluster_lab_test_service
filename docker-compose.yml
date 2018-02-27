@@ -7,12 +7,14 @@ services:
     environment:
       CADDYFILE: |
         http://service.cluster.lab {
-            proxy / https://$CONTAINER:8080
+            proxy / http://$CONTAINER:8080
         }
     volumes:
       - anyblok_data:/var/test_service
       # Simulate a directory that is not a btrfs partition
       - cache_data:/var/cache
+    networks:
+      - cluster_default
 
   dbserver:
     image: postgres:10-alpine
