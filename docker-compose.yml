@@ -4,6 +4,8 @@ services:
 
   anyblok:
     build: ./
+    depends_on:
+      - dbserver
     environment:
       CADDYFILE: |
         http://service.cluster.lab {
