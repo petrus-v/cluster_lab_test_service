@@ -19,5 +19,11 @@ class TestCanigooRestApi(PyramidBlokTestCase):
         self.assertEqual(response.body.decode('utf8'), "An example")
 
     def test_post_example(self):
-        response = self.webserver.post('/example/1', status=404)
-        self.assertEqual(response.status, '404 Not Found')
+        response = self.webserver.post(
+            '/example', dict(name="test post", ), status=201
+        )
+        json_body = response.json_body
+        id = json_body['id']
+        self.assertEqual(json_body, {'id': id, 'name': "test post"})
+        self.assertTrue(response.headers['Location'].endswith(
+            "example/{}".format(id)))

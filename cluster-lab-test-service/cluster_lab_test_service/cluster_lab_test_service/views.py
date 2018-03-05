@@ -25,7 +25,22 @@ class ExampleView:
         )
         return Response(example.name)
 
-    @view_config(route_name='example_list', renderer='json')
+    @view_config(
+        route_name='example_list', renderer='json', request_method='POST'
+    )
+    def route_create(self):
+        record = self.registry.Example.insert(
+            name=self.request.params.getone('name')
+        )
+        return Response(
+            json_body=record.to_dict(),
+            status=201,
+            headers=dict(Location="example/{}".format(record.id))
+        )
+
+    @view_config(
+        route_name='example_list', renderer='json', request_method='GET'
+    )
     def route_examples(self):
         """view all examples.
         """
