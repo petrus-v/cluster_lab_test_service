@@ -1,6 +1,11 @@
+import os
+
 from pyramid.view import view_defaults, view_config
 from anyblok_pyramid import current_blok
 from pyramid.response import Response
+
+PERSISTENT_PATH = "/var/test_service/"
+CACHE_PATH = "/var/cache/"
 
 
 @view_defaults(installed_blok=current_blok())
@@ -29,9 +34,15 @@ class ExampleView:
         route_name='example_list', renderer='json', request_method='POST'
     )
     def route_create(self):
-        record = self.registry.Example.insert(
-            name=self.request.params.getone('name')
-        )
+        name = self.request.params.getone('name')
+        content = self.request.params.get('content')
+        record = self.registry.Example.insert(name=name, content=content)
+        if content:
+            with open(os.path.join(PERSISTENT_PATH, name), 'w') as f:
+                f.write(content)
+            with open(os.path.join(CACHE_PATH, name), 'w') as f:
+                f.write(content)
+
         return Response(
             json_body=record.to_dict(),
             status=201,

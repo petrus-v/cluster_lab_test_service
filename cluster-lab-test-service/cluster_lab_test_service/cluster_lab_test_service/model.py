@@ -14,10 +14,11 @@ class Example():
     """
     id = Integer(primary_key=True)
     name = String(label="Name", unique=True, nullable=False)
+    content = String(label="Content", nullable=True)
 
     def __str__(self):
-        return ('{self.name}').format(self=self)
+        return ('{self.name} - {self.content}').format(self=self)
 
     def __repr__(self):
-        msg = ('<Example: {self.name}, {self.id}>')
+        msg = ('<Example: {self.name}, {self.content}, {self.id}>')
         return msg.format(self=self)
