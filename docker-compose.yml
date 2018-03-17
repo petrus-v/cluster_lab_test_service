@@ -4,6 +4,7 @@ services:
 
   anyblok:
     build: ./
+    restart: unless-stopped
     depends_on:
       - dbserver
     environment:
@@ -21,6 +22,7 @@ services:
 
   dbserver:
     image: postgres:10-alpine
+    restart: unless-stopped
     environment:
       POSTGRES_DB: lab_db
       POSTGRES_USER: lab_user
