@@ -17,12 +17,10 @@ help:
 
 setup: ## install python project dependencies
 	pip install .
-	anyblok_createdb -c app.cfg || anyblok_updatedb -c app.cfg
 
 setup-tests: ## install python project dependencies for tests
 	pip install -r requirements.test.txt
 	pip install .
-	anyblok_createdb -c app.test.cfg || anyblok_updatedb -c app.test.cfg
 
 setup-dev: ## install python project dependencies for development
 	pip install -r requirements.dev.txt
@@ -51,8 +49,9 @@ lint: ## check style with flake8
 	flake8 cluster_lab_test_service
 
 test: ## run anyblok nose tests
+	anyblok_createdb -c app.test.cfg || anyblok_updatedb -c app.test.cfg
 	anyblok_nose -c app.test.cfg -- -v -s cluster_lab_test_service
 
 documentation: ## generate documentation
-	anyblok_doc -c app.test.cfg --doc-format RST --doc-output doc/source/apidoc.rst
+	anyblok_doc -c app.dev.cfg --doc-format RST --doc-output doc/source/apidoc.rst
 	make -C doc/ html

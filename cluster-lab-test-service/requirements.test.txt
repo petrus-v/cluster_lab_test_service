@@ -1,6 +1,4 @@
 flake8
 coverage
 WebTest
-sphinx
-sphinxcontrib-httpdomain
 -e git+https://github.com/AnyBlok/Anyblok_Pyramid@master#egg=anyblok_pyramid

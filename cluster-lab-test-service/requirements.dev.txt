@@ -2,3 +2,5 @@
 ipdb
 ipdbplugin
 ipython
+sphinx
+sphinxcontrib-httpdomain
