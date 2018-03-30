@@ -16,6 +16,8 @@ services:
       - anyblok_data:/var/test_service
       # Simulate a directory that is not a btrfs partition
       - cache_data:/var/cache
+      - ./test_bind_file:/tmp/test_bind_file
+      - ./test_bind_directory/:/tmp/test_bind_directory/
     networks:
       - backend
       - cluster_default
