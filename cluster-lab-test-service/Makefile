@@ -27,6 +27,7 @@ setup-dev: ## install python project dependencies for development
 	python setup.py develop
 
 run-dev: ## launch pyramid development server
+	sleep 10 # let some times for pgsql init we may found a propoer way
 	anyblok_createdb -c app.dev.cfg || anyblok_updatedb -c app.dev.cfg
 	anyblok_pyramid -c app.dev.cfg --wsgi-host 0.0.0.0
 

@@ -6,5 +6,6 @@ COPY cluster-lab-test-service/ ./
 
 RUN make setup-tests
 
+# TODO: avoid wraper script to properly manage PID1
 ENTRYPOINT ["make"]
 CMD ["run-dev"]
