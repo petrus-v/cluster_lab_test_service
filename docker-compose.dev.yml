@@ -14,6 +14,10 @@ services:
       - ./cluster-lab-test-service/cluster_lab_test_service:/usr/src/cluster-lab-service/cluster_lab_test_service
     command: ["test"]
 
+  anyblok_ssh:
+    ports:
+      - "2288:22"
+
 volumes:
   dbdata:
   anyblok_data:
