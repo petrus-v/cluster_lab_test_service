@@ -32,12 +32,15 @@ services:
           "ssh-anyblok": {
             "frontend": {
               "mode": "tcp",
-              "bind": "*:2222"
+              "bind": ["*:2222"]
             },
-            "backend": {
-              "port": "22"
-            }
-          },
+            "backends": [{
+              "name": "anyssh",
+              "use_backend_option": "",
+              "port": "22",
+              "peer_port": "2222"
+            }]
+          }
         }'
 
     networks:
