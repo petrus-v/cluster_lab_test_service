@@ -29,7 +29,7 @@ services:
       - cluster_default
     environment:
       HAPROXY: '{
-          "ssh-anyblok": {
+          "sshanyblok": {
             "frontend": {
               "mode": "tcp",
               "bind": ["*:2222"]
