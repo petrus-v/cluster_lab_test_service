@@ -32,13 +32,13 @@ services:
           "sshanyblok": {
             "frontend": {
               "mode": "tcp",
-              "bind": ["*:2222"]
+              "bind": ["*:2244"]
             },
             "backends": [{
               "name": "anyssh",
               "use_backend_option": "",
               "port": "22",
-              "peer_port": "2222"
+              "peer_port": "2244"
             }]
           }
         }'
