@@ -8,10 +8,13 @@ services:
     depends_on:
       - dbserver
     environment:
-      CADDYFILE: |
-        http://service.cluster.lab {
-            proxy / http://$CONTAINER:8080
-        }
+      HAPROXY: |
+        http-in:
+          backends:
+            - name: another.example.com
+              use_backend_option: "if { hdr(host) -i service.cluster.lab }"
+              port: 8080
+              peer_port: 80
     volumes:
       - anyblok_data:/var/test_service
       # Simulate a directory that is not a btrfs partition
