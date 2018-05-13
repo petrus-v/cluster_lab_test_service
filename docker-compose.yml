@@ -36,9 +36,9 @@ services:
 
 volumes:
   dbdata:
-    driver: btrfs
+    driver: anybox/buttervolume:latest
   anyblok_data:
-    driver: btrfs
+    driver: anybox/buttervolume:latest
   cache_data:
 
 
