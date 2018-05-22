@@ -17,7 +17,6 @@ services:
       CONSUL_CHECK_URLS: |
         - http://service.cluster.lab
     volumes:
-      - anyblok_data:/var/test_service
       # Simulate a directory that is not a btrfs partition
       - cache_data:/var/cache
     networks:
@@ -27,7 +26,6 @@ services:
   anyblok_ssh:
     image: panubo/sshd
     volumes:
-      - anyblok_data:/anyblok_data/:ro
       - ./ssh/id_rsa_anyblok_ssh.pub:/root/.ssh/authorized_keys
     networks:
       - cluster_default
@@ -64,8 +62,6 @@ services:
 
 volumes:
   dbdata:
-    driver: anybox/buttervolume:latest
-  anyblok_data:
     driver: anybox/buttervolume:latest
   cache_data:
 

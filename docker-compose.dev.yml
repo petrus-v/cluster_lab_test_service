@@ -6,7 +6,6 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - anyblok_data:/var/test_service
       # Simulate a directory that is not a btrfs partition
       - cache_data:/var/cache
       - ./cluster-lab-test-service/app.cfg:/usr/src/cluster-lab-service/app.cfg
@@ -20,7 +19,6 @@ services:
 
 volumes:
   dbdata:
-  anyblok_data:
   cache_data:
 
 networks:
