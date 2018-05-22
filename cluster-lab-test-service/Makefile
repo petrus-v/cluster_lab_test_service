@@ -19,6 +19,8 @@ setup: ## install python project dependencies
 	pip install .
 
 setup-tests: ## install python project dependencies for tests
+	mkdir -p /var/test_service
+	mkdir -p /var/cache
 	pip install -r requirements.test.txt
 	pip install .
 
