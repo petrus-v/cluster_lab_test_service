@@ -11,7 +11,7 @@ services:
       HAPROXY: |
         http-in:
           backends:
-            - use_backend_option: "if { hdr(host) -i service.cluster.lab }"
+            - use_backend_option: "if { hdr(host) -i service.qualif.cluster.lab }"
               port: 8080
               peer_port: 80
       CONSUL_CHECK_URLS: |
@@ -36,13 +36,13 @@ services:
           "sshanyblok": {
             "frontend": {
               "mode": "tcp",
-              "bind": ["*:2244"]
+              "bind": ["*:2245"]
             },
             "backends": [{
               "name": "anyssh",
               "use_backend_option": "",
               "port": "22",
-              "peer_port": "2244"
+              "peer_port": "2245"
             }]
           }
         }'
