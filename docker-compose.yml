@@ -15,39 +15,13 @@ services:
               port: 8080
               peer_port: 80
       CONSUL_CHECK_URLS: |
-        - http://service.cluster.lab
+        - http://service.qualif.cluster.lab
     volumes:
       - anyblok_data:/var/test_service
       # Simulate a directory that is not a btrfs partition
       - cache_data:/var/cache
     networks:
       - backend
-      - cluster_default
-
-  anyblok_ssh:
-    image: panubo/sshd
-    volumes:
-      - anyblok_data:/anyblok_data/:ro
-      - ./ssh/id_rsa_anyblok_ssh.pub:/root/.ssh/authorized_keys
-    networks:
-      - cluster_default
-    environment:
-      HAPROXY: '{
-          "sshanyblok": {
-            "frontend": {
-              "mode": "tcp",
-              "bind": ["*:2245"]
-            },
-            "backends": [{
-              "name": "anyssh",
-              "use_backend_option": "",
-              "port": "22",
-              "peer_port": "2245"
-            }]
-          }
-        }'
-
-    networks:
       - cluster_default
 
   dbserver:
