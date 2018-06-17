@@ -40,6 +40,6 @@ done
 
 
 docker-compose up -d
-docker-compose exec --rm -T \
+docker-compose exec -T \
     anyblok sh -c \
     'echo "migrate data from '$SOURCE_REPO' branch: '$SOURCE_BRANCH' to '$REPO' branch: '$BRANCH'" > /var/test_service/migrate'
