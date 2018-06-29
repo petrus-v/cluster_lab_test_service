@@ -41,6 +41,8 @@ volumes:
     driver: anybox/buttervolume:latest
   anyblok_data:
     driver: anybox/buttervolume:latest
+    labels:
+      - com.github.mlfmonde.cluster.nonmigrable=True
   cache_data:
 
 
