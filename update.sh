@@ -34,5 +34,16 @@ if [ -f $BRANCH/post_up.env ]; then
     . $BRANCH/post_up.env
 fi
 
+# At this stage containers are not up yet !
+# Please run containers (vs exec)
+# and then rm the ephemerals '_run' related containers
+
+# Example: you run anyblok container with on_depends dbserver,
+# you have to rm in order:
+# docker-compose rm anyblok_run
+# docker-compose rm dbserver_run
+
 # just put a test file to check it exists in CI (then we now we apply well post_up.sh script)
-docker-compose exec anyblok sh -c "echo 'TEST POST UP' >> /tmp/post_up_test.txt"
+docker-compose run anyblok sh -c "echo 'TEST POST UP' >> /tmp/post_up_test.txt"
+docker-compose rm anyblok_run
+docker-compose rm dbserver_run
