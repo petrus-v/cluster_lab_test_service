@@ -20,6 +20,19 @@ services:
       - backend
       - cluster_default
 
+  test:
+    # test image, sh with tty to be always up,
+    # this service is use to operate the update.sh script
+    # as anyblok 'make' entrypoint does not allow any free command
+    image: alpine:latest
+    volumes:
+      - test_tmp:/tmp
+    networks:
+      - backend
+      - cluster_default
+    tty: true
+    command: sh
+
   anyblok_ssh:
     image: panubo/sshd
     volumes:
@@ -64,6 +77,7 @@ volumes:
   anyblok_data:
     driver: anybox/buttervolume:latest
   cache_data:
+  test_tmp:
 
 
 networks:
