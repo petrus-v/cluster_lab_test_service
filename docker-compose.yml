@@ -21,7 +21,6 @@ services:
       - cluster_default
 
   test:
-    # test image, sh with tty to be always up,
     # this service is use to operate the update.sh script
     # as anyblok 'make' entrypoint does not allow any free command
     image: alpine:latest
@@ -30,8 +29,6 @@ services:
     networks:
       - backend
       - cluster_default
-    tty: true
-    command: sh
 
   anyblok_ssh:
     image: panubo/sshd
