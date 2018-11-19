@@ -6,9 +6,7 @@ env:
     - IMAGE=mlfmonde/lab-test-service
     - TAG=latest
 
-install: true
-
-scripts:
+script:
   - docker build -t $IMAGE:$TAG .
   - docker-compose -f docker-compose.yml -f docker-compose.travis.yml up -d dbserver
   - docker-compose exec -T dbserver sh -c "while ! psql -U lab_user -d lab_db -c 'select 1' ; do echo 'Waiting pgsql init...'; sleep 1; done;"
