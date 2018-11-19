@@ -1,5 +1,3 @@
-language: python
-
 services:
   - docker
 
@@ -7,6 +5,8 @@ env:
   global:
     - IMAGE=mlfmonde/lab-test-service
     - TAG=latest
+
+install: true
 
 scripts:
   - docker build -t $IMAGE:$TAG .
