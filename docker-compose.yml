@@ -3,7 +3,7 @@ version: '2.1'
 services:
 
   anyblok:
-    build: ./
+    build: mlfmonde/lab-test-service
     restart: unless-stopped
     depends_on:
       - dbserver
