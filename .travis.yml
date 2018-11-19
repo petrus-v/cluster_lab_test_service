@@ -1,0 +1,18 @@
+services:
+  - docker
+
+env:
+  global:
+    - IMAGE=mlfmonde/lab-test-service
+    - TAG=latest
+
+scripts:
+  - docker build -t $IMAGE:$TAG .
+  - docker-compose -f docker-compose.yml -f docker-compose.travis.yml up -d dbserver
+  - docker-compose exec -T dbserver sh -c "while ! psql -U lab_user -d lab_db -c 'select 1' ; do echo 'Waiting pgsql init...'; sleep 1; done;"
+  - docker-compose -f docker-compose.yml -f docker-compose.travis.yml run -T anyblok
+
+after_success:
+  - docker run --rm $IMAGE:$TAG
+  - echo "$DOCKER_HUB_PASSWORD" | docker login -u $DOCKER_HUB_USERNAME --password-stdin && docker push $IMAGE:$TAG
+  if: branch = master AND type != pull_request

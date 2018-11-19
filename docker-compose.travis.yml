@@ -3,6 +3,7 @@ version: '2.1'
 services:
 
   anyblok:
+    image: $IMAGE:$TAG
     ports:
       - "8080:8080"
     volumes:

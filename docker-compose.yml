@@ -20,32 +20,6 @@ services:
       - backend
       - cluster_default
 
-  anyblok_ssh:
-    image: panubo/sshd
-    volumes:
-      - anyblok_data:/anyblok_data/:ro
-      - ./ssh/id_rsa_anyblok_ssh.pub:/root/.ssh/authorized_keys
-    networks:
-      - cluster_default
-    environment:
-      HAPROXY: '{
-          "sshanyblok": {
-            "frontend": {
-              "mode": "tcp",
-              "bind": ["*:2244"]
-            },
-            "backends": [{
-              "name": "anyssh",
-              "use_backend_option": "",
-              "port": "22",
-              "peer_port": "2244"
-            }]
-          }
-        }'
-
-    networks:
-      - cluster_default
-
   dbserver:
     image: postgres:10-alpine
     restart: unless-stopped
