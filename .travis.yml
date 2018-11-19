@@ -15,4 +15,3 @@ scripts:
 after_success:
   - docker run --rm $IMAGE:$TAG
   - echo "$DOCKER_HUB_PASSWORD" | docker login -u $DOCKER_HUB_USERNAME --password-stdin && docker push $IMAGE:$TAG
-  if: branch = master AND type != pull_request
