@@ -13,5 +13,5 @@ scripts:
   - docker-compose -f docker-compose.yml -f docker-compose.travis.yml run -T anyblok
 
 after_success:
-  - docker run --rm $IMAGE:$TAG
+  - test branch = master AND type != pull_request
   - echo "$DOCKER_HUB_PASSWORD" | docker login -u $DOCKER_HUB_USERNAME --password-stdin && docker push $IMAGE:$TAG
