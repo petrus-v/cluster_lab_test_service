@@ -9,9 +9,6 @@ services:
       - anyblok_data:/var/test_service
       # Simulate a directory that is not a btrfs partition
       - cache_data:/var/cache
-      - ./cluster-lab-test-service/app.cfg:/usr/src/cluster-lab-service/app.cfg
-      - ./cluster-lab-test-service/Makefile:/usr/src/cluster-lab-service/Makefile
-      - ./cluster-lab-test-service/cluster_lab_test_service:/usr/src/cluster-lab-service/cluster_lab_test_service
     command: ["test"]
 
   anyblok_ssh:
