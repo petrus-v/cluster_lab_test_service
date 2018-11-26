@@ -43,5 +43,5 @@ fi
 # docker-compose rm anyblok_run
 # docker-compose rm dbserver_run
 
-# just put a test file to check it exists in CI (then we now we apply well post_up.sh script)
-docker-compose run --rm test sh -c "echo 'TEST POST UP' >> /tmp/post_up_test.txt"
+# just put a test file to check it exists in CI (then we now we apply well update.sh script)
+docker-compose run --rm test sh -c "echo 'TEST UPDATE' >> /tmp/update.txt"
