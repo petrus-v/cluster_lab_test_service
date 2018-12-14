@@ -5,10 +5,6 @@ set -e
 # -x debug mode to display line before its execution
 set +x
 
-docker-compose run --rm test sh -c "echo 'migrate' >> /tmp/migrate.txt"
-exit 0
-
-
 USAGE="
 Usage: $0
     -R SOURCE REPO -B SOURCE BRANCH
