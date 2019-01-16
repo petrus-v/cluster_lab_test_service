@@ -3,7 +3,7 @@
 # exit on error
 set -e
 # -x debug mode to display line before its execution
-set -x
+set +x
 
 
 USAGE="
