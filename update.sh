@@ -29,8 +29,11 @@ do
     esac
 done
 
+echo "Running update script on $REPO branch: $BRANCH..."
 docker-compose up -d
 
 docker-compose exec -T \
     anyblok sh -c \
     'echo "run update data after migrate repo: '$REPO' branch: '$BRANCH'" > /var/test_service/update'
+docker-compose run anyblok sh -c 'echo "Running update script on '$REPO' branch: '$BRANCH'..."'
+docker-compose down
