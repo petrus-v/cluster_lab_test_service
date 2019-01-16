@@ -34,14 +34,16 @@ if [ -f $BRANCH/post_up.env ]; then
     . $BRANCH/post_up.env
 fi
 
-# At this stage containers are not up yet !
-# Please run containers (vs exec)
-# and then rm the ephemerals '_run' related containers
+# Reminder: at this stage containers are not up yet !
 
-# Example: you run anyblok container with on_depends dbserver,
-# you have to rm in order:
-# docker-compose rm anyblok_run
-# docker-compose rm dbserver_run
+# sim here a real life UC: up of the db for an update
+docker-compose up -d dbserver
+docker-compose exec -T -u postgres dbserver sh -c \
+    "while ! psql -d 'lab_db' -c 'select 1' ; do echo 'Waiting pgsql init...'; sleep 1; done;"
 
+# sim here a fake update
 # just put a test file to check it exists in CI (then we now we apply well update.sh script)
 docker-compose run --rm test sh -c "echo 'TEST UPDATE' >> /tmp/update.txt"
+
+# down services
+docker-compose down
