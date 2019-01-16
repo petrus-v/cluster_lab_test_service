@@ -38,8 +38,12 @@ do
     esac
 done
 
-
+echo "migrate data from $SOURCE_REPO branch: $SOURCE_BRANCH to $REPO branch: $BRANCH"
 docker-compose up -d
 docker-compose exec -T \
     anyblok sh -c \
     'echo "migrate data from '$SOURCE_REPO' branch: '$SOURCE_BRANCH' to '$REPO' branch: '$BRANCH'" > /var/test_service/migrate'
+
+docker-compose run -T \
+    anyblok sh -c \
+    'echo "migrate data from '$SOURCE_REPO' branch: '$SOURCE_BRANCH' to '$REPO' branch: '$BRANCH'"'
