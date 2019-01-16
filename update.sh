@@ -38,8 +38,8 @@ fi
 
 # sim here a real life UC: up of the db for an update
 docker-compose up -d dbserver
-#docker-compose exec -T -u postgres dbserver sh -c \
-#    "while ! psql -d 'lab_db' -c 'select 1' ; do echo 'Waiting pgsql init...'; sleep 1; done;"
+docker-compose exec -T -u postgres dbserver sh -c \
+    "while ! psql -d 'lab_db' -c 'select 1' ; do echo 'Waiting pgsql init...'; sleep 1; done;"
 
 # sim here a fake update
 # just put a test file to check it exists in CI (then we now we apply well update.sh script)
