@@ -11,7 +11,7 @@ services:
       HAPROXY: |
         http-in:
           backends:
-            - use_backend_option: "if { hdr(host) -i service.cluster.lab } { path -i / }"
+            - use_backend_option: "if { hdr(host) -i service.qualif.cluster.lab } { path -i / }"
               port: 8080
               peer_port: 80
       CONSUL_CHECK_URLS: |
