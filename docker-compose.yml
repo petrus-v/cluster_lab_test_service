@@ -14,11 +14,7 @@ services:
             - use_backend_option: "if { base_beg -i service.qualif.cluster.lab/example }"
               port: 8080
               peer_port: 80
-              options:
-                "userlist L1"
-                "  user mlf insecure-password testppd"
-                "acl auth_ok http_auth(L1)"
-                "http-request allow if auth_ok"
+              options: ["userlist L1", "  user mlf insecure-password testppd", "acl auth_ok http_auth(L1)", "http-request allow if auth_ok"]
       CONSUL_CHECK_URLS: |
         - http://service.qualif.cluster.lab
     volumes:
