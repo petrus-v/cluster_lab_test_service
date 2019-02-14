@@ -11,7 +11,7 @@ services:
       HAPROXY: |
         http-in:
           backends:
-            - use_backend_option: "if { base_beg -i service.qualif.cluster.lab/test2 }"
+            - use_backend_option: "if { base_beg -i service.qualif.cluster.lab/example }"
               port: 8080
               peer_port: 80
       CONSUL_CHECK_URLS: |
